@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 <div class="container form-container mt-5">
+    <img src="{% static 'images/logo.png' %}" alt="My Coffee Shop">
     <h2 class="mb-4">Login</h2>
     <form method="post">
         {% csrf_token %}
