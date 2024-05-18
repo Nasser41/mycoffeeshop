@@ -3,6 +3,7 @@ from .models import Product
 from .forms import ProductForm
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
+
 def home(request):
     if not request.user.is_authenticated:
         return redirect('login')
@@ -88,9 +89,8 @@ def update_cart(request, pk):
             })
 
         return JsonResponse({'success': True, 'item_total': item_total, 'cart_total': total_price})
-    return JsonResponse({'success': False})
+    return redirect('cart_detail')
 
-@login_required
 def checkout(request):
     cart = request.session.get('cart', {})
     cart_items = []
@@ -106,3 +106,11 @@ def checkout(request):
     request.session['cart'] = {}  # Clear the cart after checkout
     return render(request, 'shop/checkout.html', {'cart_items': cart_items, 'total_price': total_price})
 
+@login_required
+def remove_from_cart(request, pk):
+    cart = request.session.get('cart', {})
+    pk = str(pk)  # Ensure pk is a string
+    if pk in cart:
+        del cart[pk]
+        request.session['cart'] = cart
+    return redirect('cart_detail')

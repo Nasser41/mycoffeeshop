@@ -24,7 +24,7 @@
                         <td>${{ item.product.price }}</td>
                         <td class="item-total">${{ item.total_price }}</td>
                         <td>
-                            <form method="post" action="{% url 'update_cart' item.product.pk %}">
+                            <form method="post" action="{% url 'remove_from_cart' item.product.pk %}">
                                 {% csrf_token %}
                                 <input type="hidden" name="quantity" value="0">
                                 <button type="submit" class="btn btn-danger btn-sm">Remove</button>
