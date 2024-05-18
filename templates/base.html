@@ -17,6 +17,9 @@
         .navbar-brand, .nav-link {
             color: #f8f9fa !important;
         }
+        .navbar-brand img {
+            max-height: 40px;
+        }
         .card {
             border: none;
             border-radius: 0;
@@ -36,11 +39,17 @@
             padding: 20px 0;
             text-align: center;
         }
+        .form-container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
     </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg">
-        <a class="navbar-brand" href="{% url 'home' %}">My Coffee Shop</a>
+        <a class="navbar-brand" href="{% url 'home' %}">
+            <img src="{% static 'images/logo.png' %}" alt="My Coffee Shop">
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
