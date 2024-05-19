@@ -74,7 +74,7 @@ def update_cart(request, pk):
             cart.pop(pk, None)
         request.session['cart'] = cart
 
-        # Calculate the new totals
+        
         cart_items = []
         total_price = 0
         item_total = 0
@@ -103,13 +103,13 @@ def checkout(request):
             'quantity': quantity,
             'total_price': product.price * quantity,
         })
-    request.session['cart'] = {}  # Clear the cart after checkout
+    request.session['cart'] = {}  
     return render(request, 'shop/checkout.html', {'cart_items': cart_items, 'total_price': total_price})
 
 @login_required
 def remove_from_cart(request, pk):
     cart = request.session.get('cart', {})
-    pk = str(pk)  # Ensure pk is a string
+    pk = str(pk)  
     if pk in cart:
         del cart[pk]
         request.session['cart'] = cart
